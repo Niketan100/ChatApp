@@ -62,7 +62,7 @@ export default function SignUp(){
         </div>
         
         <div>
-            <button className=" btn w-full h-10 btn-warning btn-sm mt-6">SignUp</button>
+            <button className=" btn w-full h-10 btn-warning btn-sm mt-2">SignUp</button>
         </div>
         <br />
 
