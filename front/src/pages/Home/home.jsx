@@ -10,14 +10,8 @@ export default function Home(){
              <span> </span>
            
         </h1>
-        <SideBar/>
-        
-        
+        <SideBar/>        
         <MSGContainer/>
-        
-        
-        
-        
 
     </div>
     

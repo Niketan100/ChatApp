@@ -12,7 +12,7 @@ export default function SearchBar() {
         />
         <button
           type="submit"
-          className="btn btn-circle h-12 w-12 justify-center bg-gray-900 text-white hover:bg-gray-800 focus:outline-none"
+          className="btn btn-circle border-none h-12 w-12 justify-center bg-yellow-500 text-white hover:bg-gray-800 focus:outline-none"
           aria-label="Search"
         >
           <IoSearchSharp className="text-lg" />

@@ -9,8 +9,8 @@ export default function message() {
             </div>
         </div>
 
-        <div className={`chat-bubble text-white bg-blue-500`}>Hii This is Niketan</div>
-        <div className={`chat-footer opacity-50 text-xs flex gap-1 items-center`}>12:12 pm</div>
+        <div className={`chat-bubble text-white bg-yellow-500`}>Hii This is Niketan</div>
+        <div className={`chat-footer opacity-50 text-xs flex gap-1 items-center`}>12:11 pm</div>
     </div>
     
   )

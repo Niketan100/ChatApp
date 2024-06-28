@@ -12,6 +12,7 @@ function App() {
 
   return (
     <div className='p-4 h-screen overflow-hidden flex items-center bg-grey-400 justify-center backdrop-filter bg-clip-padding backdrop-blur-lg backdrop-opacity-0'>
+       
         <Home/>
   
         

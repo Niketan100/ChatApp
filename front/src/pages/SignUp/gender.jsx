@@ -5,18 +5,18 @@ export default function gender() {
   <div className='flex'>   
     <div className='form-control'>
         <label className='label gap-2 cursor-pointer'>
-            <span className='text-lg label-text'>
+            <span className='text-lg label-text text-white'>
                 Male
             </span>
-            <input type="checkbox" className='checkbox border-slate-900' />
+            <input type="checkbox" className='checkbox border-white' />
         </label>
     </div>
     <div className='form-control'>
     <label className='label gap-2 cursor-pointer'>
-            <span className='text-lg label-text'>
+            <span className='text-lg label-text text-white'>
                 Female
             </span>
-            <input type="checkbox" className='font-light checkbox border-slate-900' />
+            <input type="checkbox" className='font-light checkbox border-white' />
         </label>
     </div>
 

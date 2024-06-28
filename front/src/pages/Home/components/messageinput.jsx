@@ -12,7 +12,7 @@ export default function MessageInput() {
         />
         <button 
           type='submit' 
-          className=' text-lg text-center items-center btn-circle  bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 border border-blue-500 hover:border-blue-600'
+          className=' text-lg text-center items-center btn-circle border-none bg-yellow-500 hover:bg-white text-black px-4 py-2 border border-blue-500 hover:border-blue-600'
         >
           <IoIosSend />
         </button>
