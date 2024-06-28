@@ -4,7 +4,7 @@ import Logout from './Logout.jsx';
 
 export default function SideBar() {
   return (
-    <div className="h-[calc(100vh-4rem)] w-7/12 p-4 shadow-xl border-slate-800 shadow-blue-gray-900/5 flex flex-col justify-between bg-white">
+    <div className="h-[100vh-4rem] w-5/12 p-4 shadow-xl border-slate-800 shadow-blue-gray-900/5 flex flex-col justify-between bg-white">
       <div>
         <SearchBar />
       </div>

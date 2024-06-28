@@ -5,7 +5,7 @@ export default function Home(){
 
     return(
 
-    <div className=" w-full max-w-[60rem] p-4 shadow-xl shadow-blue-gray-900/5 flex">
+    <div className="h-[100vh] w-full max-w-[60rem] p-4 shadow-xl shadow-blue-gray-900/5 flex overflow-auto">
         <h1 className="text-3xl font-semibold text-center">
              <span> </span>
            
