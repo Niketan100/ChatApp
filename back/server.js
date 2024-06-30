@@ -1,5 +1,15 @@
 import express from "express";
 const app = express();
+import cors from "cors";
+
+
+app.use(cors({
+    origin: 'http://localhost:5173', // Adjust the origin as needed
+    credentials: true
+}));
+
+
+
 import dotenv from "dotenv";
 import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
@@ -14,6 +24,7 @@ import User from "./models/usermodel.js";
 dotenv.config();
 
 app.use(express.json());
+
 app.use(cookieParser());
 
 

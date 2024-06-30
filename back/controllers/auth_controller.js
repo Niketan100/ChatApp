@@ -2,31 +2,32 @@ import User from "../models/usermodel.js";
 import generatetokenandcookie from "../utilitis/generate.js";
 import bcrypt from "bcryptjs"
 
-export const login = async (req,res) =>{
-    try{
-        const {username,password} = req.body;
-        const user = await User.findOne({username})
+export const login = async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        const user = await User.findOne({ username });
 
-        if(!user){
-            res.status(404).json({"Error" : "User Not Found"});
+        if (!user) {
+            return res.status(404).json({ "Error": "User Not Found" });
         }
-        const ispassscorrect = await bcrypt.compare(password, user?.password || "")
-        if(!ispassscorrect){
-            return res.status(400).json({"error" : "password did not match"})
-        }
-        generatetokenandcookie(user._id , res);
 
-        
+        const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
+        if (!isPasswordCorrect) {
+            return res.status(400).json({ "error": "Password did not match" });
+        }
+
+        generatetokenandcookie(user._id, res);
+
         res.status(200).json({
-            "user" : user.username,
-            "fullName" : user.fullName
-        })
-
-
-    }catch(err){
+            "user": user.username,
+            "fullName": user.fullName
+        });
+    } catch (err) {
         console.log(err);
+        res.status(500).json({ "error": "Something went wrong" }); // Handle other errors
     }
-}
+};
+
 
 export const signup = async (req,res) =>{
     try {
