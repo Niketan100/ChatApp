@@ -1,6 +1,7 @@
 import User from "../models/usermodel.js";
 import generatetokenandcookie from "../utilitis/generate.js";
 import bcrypt from "bcryptjs"
+import jwt from 'jsonwebtoken'
 
 export const login = async (req, res) => {
     try {
@@ -16,18 +17,29 @@ export const login = async (req, res) => {
             return res.status(400).json({ "error": "Password did not match" });
         }
 
-        generatetokenandcookie(user._id, res);
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+            expiresIn: "30d",
+        });
+
+        res.cookie("jwt", token, {
+            httpOnly: true, // Recommended for security
+            sameSite: 'None', // Allow cross-site cookies
+            secure: true, // Set to true for production
+            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        });
 
         res.status(200).json({
+            "_id": user._id,
+            "token": token,
             "user": user.username,
-            "fullName": user.fullName
+            "fullName": user.fullName,
+            "gender": user.gender
         });
     } catch (err) {
         console.log(err);
         res.status(500).json({ "error": "Something went wrong" }); // Handle other errors
     }
 };
-
 
 export const signup = async (req,res) =>{
     try {
@@ -68,9 +80,9 @@ export const signup = async (req,res) =>{
 
             res.status(201).json({
                 _id : newUser._id,
-                fullname : newUser.fullname,
+                fullName : newUser.fullName,
                 username : newUser.username,
-                profiePic : newUser.profiePic,
+                profiePic : newUser.profilePic,
                 gender : newUser.gender,
             })
 

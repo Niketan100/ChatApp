@@ -4,7 +4,7 @@ import usercontroller from "../controllers/usercontroller.js"
 
 const router = express.Router();
 
-router.get("/",protectRoute , usercontroller)
+router.get("/", protectRoute,  usercontroller)
 
 
 export default router;

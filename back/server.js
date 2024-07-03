@@ -5,7 +5,11 @@ import cors from "cors";
 
 app.use(cors({
     origin: 'http://localhost:5173', // Adjust the origin as needed
-    credentials: true
+    credentials: true,
+    options: {
+        sameSite: "none",
+        secure: process.env.NODE_ENV === "production"
+    }
 }));
 
 

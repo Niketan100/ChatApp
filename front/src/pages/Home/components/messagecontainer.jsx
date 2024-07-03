@@ -27,8 +27,8 @@ const MessageContainer = () => {
 
 const NoChatSelected = () => {
   const storedUserData = localStorage.getItem('chat-user');
-      
-            const userData = JSON.parse(storedUserData);
+  const userData = JSON.parse(storedUserData);
+  console.log(userData);
 
   return (
     <div className='w-full flex items-center justify-center h-full'>
@@ -37,7 +37,8 @@ const NoChatSelected = () => {
           Welcome
           <span> </span>
           <span className="text-yellow-500 bg-grey-300">
-                Mr. {userData.fullName}
+                 {userData.gender === 'male' ? "Mr." : "Mrs." }
+                 {userData.fullName}
           </span>
         </p>
         

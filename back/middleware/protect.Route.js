@@ -1,9 +1,16 @@
 import jwt from 'jsonwebtoken';
+import express from 'express';
+const app = express();
 import User from '../models/usermodel.js';
+import cookieParser from 'cookie-parser';
+
+app.use(cookieParser());
 
 const protectRoute = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
+        console.log(token);
+        console.log("ye hai token");
 
         // Check if token exists
         if (!token) {
@@ -16,8 +23,8 @@ const protectRoute = async (req, res, next) => {
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
-        // Retrieve user from database based on decoded userId
-        const user = await User.findById(decoded.userId).select("-password");
+        // Retrieve user from database based on decoded id
+        const user = await User.findById(decoded.id).select("-password");
 
         // Check if user exists
         if (!user) {
@@ -29,7 +36,7 @@ const protectRoute = async (req, res, next) => {
         next();
     } catch (error) {
         console.error('Error in protectRoute middleware:', error);
-        return res.status(401).json({ message: 'Unauthorized Ho tum ' });
+        return res.status(401).json({ message: 'Unauthorized Ho tum' });
     }
 };
 
