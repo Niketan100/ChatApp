@@ -20,7 +20,7 @@ export const login = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
             expiresIn: "30d",
         });
-
+        console.log(token);
         res.cookie("jwt", token, {
             httpOnly: true, // Recommended for security
             sameSite: 'None', // Allow cross-site cookies
@@ -28,9 +28,11 @@ export const login = async (req, res) => {
             maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
         });
 
+        console.log()
+
         res.status(200).json({
             "_id": user._id,
-            "token": token,
+            "profilePic" : user.profile,
             "user": user.username,
             "fullName": user.fullName,
             "gender": user.gender
@@ -82,7 +84,7 @@ export const signup = async (req,res) =>{
                 _id : newUser._id,
                 fullName : newUser.fullName,
                 username : newUser.username,
-                profiePic : newUser.profilePic,
+                profilePic : newUser.profilePic,
                 gender : newUser.gender,
             })
 

@@ -15,13 +15,14 @@ export default function useConversations() {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    credentials: "include", // Correctly set credentials here
+                    credentials: "include", // Ensure credentials are set correctly
                 });
                 const data = await res.json();
 
-                if (data.error) {
-                    throw new Error(data.error);
+                if (!res.ok) {
+                    throw new Error(data.message || 'Failed to fetch conversations');
                 }
+
                 setConversations(data);
             } catch (err) {
                 setError(err.message);
@@ -31,7 +32,7 @@ export default function useConversations() {
         };
 
         fetchConversations();
-    }, []);
+    }, []); // Empty dependency array means it runs once on mount
 
     return { loading, conversations, error };
 }

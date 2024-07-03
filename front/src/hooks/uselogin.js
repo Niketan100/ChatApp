@@ -14,6 +14,7 @@ export default function UseLogin() {
         try {
             const res = await fetch('http://localhost:3000/api/auth/login', {
                 method: 'POST',
+                cros : true,
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
