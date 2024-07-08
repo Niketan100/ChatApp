@@ -20,6 +20,10 @@ export const login = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
             expiresIn: "30d",
         });
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(token, decoded);
+        
+
         console.log(token);
         res.cookie("jwt", token, {
             httpOnly: true, // Recommended for security
@@ -32,7 +36,7 @@ export const login = async (req, res) => {
 
         res.status(200).json({
             "_id": user._id,
-            "profilePic" : user.profile,
+            "profilePic" : user.profilePic,
             "user": user.username,
             "fullName": user.fullName,
             "gender": user.gender

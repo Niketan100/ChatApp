@@ -10,21 +10,24 @@ const protectRoute = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
         console.log(token);
-        console.log("ye hai token");
-
+        console.log('inside protect route');
+      
         // Check if token exists
         if (!token) {
             return res.status(401).json({ message: 'Unauthorized bhai' });
         }
 
+        
         // Verify token
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(decoded);
         if (!decoded) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
         // Retrieve user from database based on decoded id
         const user = await User.findById(decoded.id).select("-password");
+        console.log(user);
 
         // Check if user exists
         if (!user) {

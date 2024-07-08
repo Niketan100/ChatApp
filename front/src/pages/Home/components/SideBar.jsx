@@ -2,18 +2,20 @@ import React from 'react';
 import SearchBar from './SearchBar.jsx';
 import Conversation from './Conversation.jsx';
 import Logout from './Logout.jsx';
-import fetchConversations from '../../../hooks/getconversations.js';
+import useFetchConversations from '../../../hooks/getconversations.js';
 
 export default function SideBar() {
-  const { loading, conversations } = fetchConversations();
+  const { loading, conversations } = useFetchConversations();
   console.log(conversations);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-full">Loading...</div>;
   }
 
+ 
+
   return (
-    <div className="h-[calc(100vh-4rem)] w-5/12 p-4 shadow-xl border-slate-800 shadow-blue-gray-900/5 flex flex-col justify-between bg-white">
+    <div className="h-[calc(100vh-4rem)] w-5-12 md:w-5/12 p-4 shadow-xl border-slate-800 shadow-blue-gray-900/5 flex flex-col justify-between bg-white">
       <h1 className="text-3xl font-semibold text-center">
         <span></span>
         <span className="text-yellow-500 bg-grey-300">ClOSer</span>

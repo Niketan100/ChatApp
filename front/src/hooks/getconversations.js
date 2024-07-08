@@ -1,38 +1,39 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function useConversations() {
+function useFetchConversations() {
     const [loading, setLoading] = useState(false);
     const [conversations, setConversations] = useState([]);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchConversations = async () => {
+        const getConversations = async () => {
             setLoading(true);
-            setError(null);
-            try {
-                const res = await fetch("http://localhost:3000/api/users", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include", // Ensure credentials are set correctly
-                });
-                const data = await res.json();
 
-                if (!res.ok) {
-                    throw new Error(data.message || 'Failed to fetch conversations');
+            try {
+                const response = await fetch(`http://localhost:3000/api/users`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include' // Include credentials such as cookies
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
                 }
 
+                const data = await response.json();
                 setConversations(data);
-            } catch (err) {
-                setError(err.message);
+            } catch (error) {
+                console.error(`Fetching conversations failed: ${error.message}`);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchConversations();
-    }, []); // Empty dependency array means it runs once on mount
+        getConversations();
+    }, []);
 
-    return { loading, conversations, error };
+    return { loading, conversations };
 }
+
+export default useFetchConversations;
