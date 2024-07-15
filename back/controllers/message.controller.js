@@ -1,7 +1,6 @@
 import Conversation from '../models/conversation.model.js';
 import Message from '../models/mossage.model.js';  // Correct the import path for the Message model
-import { io } from './../socket/socket.js';
-import { getReceiverSocketId } from '../socket/socket.js';
+
 
 export const sendmessage = async (req, res) => {
     try {
@@ -40,11 +39,7 @@ export const sendmessage = async (req, res) => {
 
         console.log("Message was sent");
 
-        const receiverSocketId = getReceiverSocketId(receiverId);
-        if (receiverSocketId) {
-            io.to(receiverSocketId).emit("newMessage",newMessage);
-        }
-
+       
         // Respond with the saved message
         res.status(200).json(newMessage);
     } catch (error) {
