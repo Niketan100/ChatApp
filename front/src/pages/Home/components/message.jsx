@@ -25,16 +25,17 @@ export default function Message({ message1, senderId, receiverId, time }) {
   };
 
   return (
-    <div className={`chat ${isSender ? 'chat-end' : 'chat-start'}`}>
-      <div className='chat-image w-10 avatar text-lg items-center justify-center'>
+    <div className={`mt-1 chat ${isSender ? 'chat-end' : 'chat-start'}`}>
+      <div className='chat-image w-10 avatar text-base-100 items-center justify-center'>
         <img className='' src={getProfilePic(senderId)} alt='Profile' />
       </div>
-      <div className={`chat-bubble ${isSender ? 'bg-yellow-600 text-white' : 'bg-gray-200 text-black'} font-family`}>
+      <div className={`flex gap-3 chat-bubble ${isSender ? 'bg-yellow-600 text-white' : 'bg-gray-200 text-black'} font-family`}>
         {message1}
-      </div>
-      <div className={`chat-footer opacity-50 text-xs flex gap-1 items-center ${isSender ? 'justify-end' : 'justify-start'}`}>
+        <div className={` chat-footer opacity-50 text-xs flex gap-1 items-center ${isSender ? 'bg-yellow-600 text-white justify-end' : 'justify-start bg-gray-200 text-black'} font-family'}`}>
         {formatTime(time)}
       </div>
+      </div>
+      
     </div>
   );
 }

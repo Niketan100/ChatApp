@@ -2,20 +2,23 @@ import React from 'react';
 import Message from './message.jsx';
 import useGetMessages from '../../../hooks/useGetMessages.js';
 import MessageInput from './messageinput.jsx'
+import useListenMessages from '../../../hooks/uselistenmessages.js';
 
 
 export default function MessageBox() {
   const { messages, loading } = useGetMessages();
+  useListenMessages();
+  console.log(messages);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className='text-white justify-center items-center flex mt-6'>Loading...</p>;
   }
 
   return (
     <>
       <div className='px-4 flex-1 overflow-auto mt-6'>
         {messages.length === 0 ? (
-          <p className='justify-center items-center flex mt-6'>Send a message to start the conversation</p>
+          <p className='text-white justify-center items-center flex mt-6'>Send a message to start the conversation</p>
         ) : (
           messages.map((message) => (
             <Message 

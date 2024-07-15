@@ -1,10 +1,12 @@
 import Conversation from '../models/conversation.model.js';
-import Message from '../models/mossage.model.js';  // Assuming correct path to Message model
+import Message from '../models/mossage.model.js';  // Correct the import path for the Message model
+import { io } from './../socket/socket.js';
+import { getReceiverSocketId } from '../socket/socket.js';
 
 export const sendmessage = async (req, res) => {
     try {
         const { message } = req.body;
-        const {id: receiverId } = req.params;
+        const { id: receiverId } = req.params;
         const senderId = req.user._id;  // Ensure it's _id, not _Id
 
         // Find existing conversation or create a new one if not found
@@ -36,31 +38,38 @@ export const sendmessage = async (req, res) => {
         // Save the updated conversation
         await conversation.save();
 
-        console.log("Message was sent ");
+        console.log("Message was sent");
 
-        // Respond with the saved conversation
-        res.status(200).json(conversation);
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if (receiverSocketId) {
+            io.to(receiverSocketId).emit("newMessage",newMessage);
+        }
+
+        // Respond with the saved message
+        res.status(200).json(newMessage);
     } catch (error) {
         console.error(error);
-        console.log("failed to send message")
+        console.log("Failed to send message");
         res.status(500).json({ error: 'Failed to send message' });
     }
-}
-
+};
 
 export const getmessages = async (req, res) => {
     try {
-
-        const {id : userToChatId} = req.params;
+        const { id: userToChatId } = req.params;
         const senderId = req.user._id;
 
         const conversation = await Conversation.findOne({
             participants: { $all: [senderId, userToChatId] },   
         }).populate("messages");
 
-        res.status(200).json(conversation);
+        if (!conversation) {
+            return res.status(404).json({ error: 'Conversation not found' });
+        }
 
+        res.status(200).json(conversation);
     } catch (error) {
-        console.log(error);        
+        console.error(error);
+        res.status(500).json({ error: 'Failed to retrieve messages' });
     }
-}
+};

@@ -7,6 +7,7 @@ export default function MessageInput() {
   const { loading, sendMessage } = useSendMessage();
 
   const handlesub = async (e) => {
+    e.preventDefault();
     if (!message) return;
     await sendMessage(message);
     setMessage('');
