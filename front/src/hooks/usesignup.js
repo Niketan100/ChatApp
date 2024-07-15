@@ -17,7 +17,7 @@ const useSignup = () => {
 
         try {
             // Example endpoint URL, update this to your actual backend endpoint
-            const res = await fetch("http://localhost:3000/api/auth/signup", {
+            const res = await fetch("api/auth/signup", {
                 method: "POST",
                 cros : true,
                 headers: { "Content-Type": "application/json" },
