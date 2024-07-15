@@ -2,12 +2,12 @@ import React from 'react';
 import Message from './message.jsx';
 import useGetMessages from '../../../hooks/useGetMessages.js';
 import MessageInput from './messageinput.jsx'
-import useListenMessages from '../../../hooks/uselistenmessages.js';
+
 
 
 export default function MessageBox() {
   const { messages, loading } = useGetMessages();
-  useListenMessages();
+
   console.log(messages);
 
   if (loading) {

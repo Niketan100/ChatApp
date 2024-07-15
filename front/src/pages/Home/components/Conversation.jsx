@@ -1,7 +1,7 @@
 import React from 'react';
 import { RiUserLine } from "react-icons/ri";
 import useconversation from '../../../store/useconversation.js';
-import { useSocketContext } from '../../../context/socketcontext.jsx';
+
 
 export default function Conversation({ conversation }) {
     const { selectedConversation, setSelectedConversation } = useconversation();
