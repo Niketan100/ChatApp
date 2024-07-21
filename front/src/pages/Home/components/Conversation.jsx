@@ -5,7 +5,7 @@ import useconversation from '../../../store/useconversation.js';
 
 export default function Conversation({ conversation }) {
     const { selectedConversation, setSelectedConversation } = useconversation();
-    const { onlineUsers } = useSocketContext();
+ 
     
     const isOnline = onlineUsers.includes(conversation._id);
 
