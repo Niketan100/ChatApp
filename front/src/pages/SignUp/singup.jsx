@@ -49,7 +49,7 @@ export default function SignUp() {
                 <hr />
                 <br />
 
-                <form onSubmit={handleSubmit} className="text-white">
+                <form onSubmit={handleSubmit} className="text-black">
                     {/* Full Name */}
                     <div>
                         <label htmlFor="fullName" className="label p-2">
