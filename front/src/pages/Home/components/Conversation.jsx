@@ -7,7 +7,6 @@ export default function Conversation({ conversation }) {
     const { selectedConversation, setSelectedConversation } = useconversation();
  
     
-    const isOnline = onlineUsers.includes(conversation._id);
 
     return (
         <>
@@ -23,9 +22,7 @@ export default function Conversation({ conversation }) {
                         alt={conversation.fullName}
                         className="rounded-full"
                     />
-                    {isOnline && (
-                        <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
-                    )}
+                   
                 </div>
                 <div className="flex flex-1 justify-between">
                     <div className="flex flex-col">
